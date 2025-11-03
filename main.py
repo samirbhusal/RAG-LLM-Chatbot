@@ -23,6 +23,3 @@ chains = prompt | llm
 response = chains.invoke({"input": "how can langsmith help with building chatbot?"})
 print(response.content)
 
-# response = llm.invoke("How Can I build customer support RAG Chatbot?")
-# print(response.content)
-
