@@ -1,7 +1,6 @@
-from itertools import chain
-
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 import os
 
@@ -18,8 +17,11 @@ prompt = ChatPromptTemplate.from_messages(
     ("You are a world class RAG chatbot developer for customer support.","{input}")
 )
 
-chains = prompt | llm
+output_parser = StrOutputParser()
+
+chains = prompt | llm | output_parser
+
 
 response = chains.invoke({"input": "how can langsmith help with building chatbot?"})
-print(response.content)
+print(response)
 
