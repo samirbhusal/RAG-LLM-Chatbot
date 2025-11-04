@@ -1,8 +1,15 @@
-from langchain_openai import ChatOpenAI
-import os
-from dotenv import load_dotenv
+from loadenv import get_openai_client
 
-load_dotenv()
-llm = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = get_openai_client()
 
-print(llm.invoke("can you build rag based chatbot"))
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="a white siamese cat",
+size="1024x1024",
+quality="standard",
+n=1,
+)
+
+image = response.data[0].url
+print(image)
+
